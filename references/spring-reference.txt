@@ -1,0 +1,6 @@
+
+#spring-boot 관련 설정 및 소개
+https://gist.github.com/ihoneymon/a343e2f4a0299988206e
+
+#의존성 주입을 위한 어노테이션 설명
+https://blog.outsider.ne.kr/785

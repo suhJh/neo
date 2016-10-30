@@ -1,0 +1,11 @@
+
+apm install simple-drag-drop-text
+apm install minimap
+apm install merge-conflicts
+apm install color-picker
+apm install highlight-selected
+apm install minimap-highlight-selected
+apm install docblockr
+apm install pigments
+apm install autocomplete-modules
+apm install color-icons
