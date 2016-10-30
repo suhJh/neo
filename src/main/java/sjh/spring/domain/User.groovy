@@ -44,10 +44,13 @@ class User implements Serializable {
     private String name
 
 
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "seq=" + seq +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

@@ -2,10 +2,16 @@ package sjh.spring
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.context.annotation.Bean
 import org.springframework.core.env.Environment
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.password.PasswordEncoder
 import sjh.spring.config.DefaultProfileUtil
+import sjh.spring.domain.User
+import sjh.spring.repository.UserRepository
 
 import javax.annotation.PostConstruct
 import javax.inject.Inject
@@ -31,29 +37,30 @@ class NeoApplication {
     11. Default properties (specified using SpringApplication.setDefaultProperties).
      */
 
-    private static final Logger log = LoggerFactory.getLogger(NeoApplication.class);
+    static final Logger log = LoggerFactory.getLogger(NeoApplication.class);
 
     @Inject
-    private Environment env;
+    Environment env;
 
-    public static main(args) {
+    static main(args) {
 
         SpringApplication app = new SpringApplication(NeoApplication.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
-        log.info("""
-                ----------------------------------------------------------
-                    '${env.getProperty("spring.application.name")}' 가 시작되었습니다. Access URLs:
-                    Local: http://127.0.0.1:${env.getProperty("server.port")}
-                    External: http://${InetAddress.getLocalHost().getHostAddress()}:${env.getProperty("server.port")}
-                ----------------------------------------------------------
-                """)
+        log.info(
+        """
+        ----------------------------------------------------------
+            '${env.getProperty("spring.application.name")}' 가 시작되었습니다. Access URLs:
+            Local: http://127.0.0.1:${env.getProperty("server.port")}
+            External: http://${InetAddress.getLocalHost().getHostAddress()}:${env.getProperty("server.port")}
+        ----------------------------------------------------------
+        """)
     }
 
 
 
     @PostConstruct
-    public void initApplication() {
+    initApplication() {
         log.info("프로퍼티모드 : ${Arrays.toString(env.getActiveProfiles())}")
         Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles())
         if (activeProfiles.contains(DefaultProfileUtil.SPRING_PROFILE_DEVELOPMENT) && activeProfiles.contains(DefaultProfileUtil.SPRING_PROFILE_PRODUCTION)) {
@@ -62,6 +69,21 @@ class NeoApplication {
     }
 
 
+    @Bean
+    CommandLineRunner init(UserRepository userRepository) {
+        return {
+            PasswordEncoder p = new BCryptPasswordEncoder();
+
+            userRepository.save(new User(name:'서종효', password: p.encode('이건암호화되어야'), email: 'pk1@naver.com'))
+            userRepository.save(new User(name:'김장군', password: p.encode('이건암호화되어야'), email: 'pk2@naver.com'))
+            userRepository.save(new User(name:'하양이', password: p.encode('이건암호화되어야'), email: 'pk3@naver.com'))
+            userRepository.save(new User(name:'까망이', password: p.encode('이건암호화되어야'), email: 'pk4@naver.com'))
+
+            userRepository.findAll().each {
+                println it
+            }
+        }
+    }
 
 
 

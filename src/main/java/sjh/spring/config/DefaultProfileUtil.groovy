@@ -41,7 +41,7 @@ final class DefaultProfileUtil {
                 return activeProfile;
             }
         }
-        log.warn("설정된 프로퍼티가 없습니다. 개발 프로퍼티를 적용합니다. ${SPRING_PROFILE_DEVELOPMENT}")
+        log.warn("설정된 프로퍼티가 없습니다. *개발 프로퍼티를 적용합니다. ${SPRING_PROFILE_DEVELOPMENT}")
         return SPRING_PROFILE_DEVELOPMENT;
     }
 
