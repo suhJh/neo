@@ -25,7 +25,7 @@ class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long seq
 
-
+	@JsonIgnore
     @Email
     @Size(max = 100)
     @Column(name="email", length = 100, unique = true)
@@ -38,7 +38,7 @@ class User implements Serializable {
     @Column(name = "password",length = 60)
     private String password
 
-
+	@JsonIgnore
     @Size(max = 50)
     @Column(name = "name", length = 50)
     private String name

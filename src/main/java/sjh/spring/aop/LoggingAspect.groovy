@@ -14,7 +14,8 @@ import org.springframework.core.env.Environment
 import javax.inject.Inject;
 
 /**
- * Created by Suh on 2016-10-30.
+ * 프록시로 로깅함.
+ * dev인 경우에만 작동하도록 설정해놨음.
  */
 @Aspect
 class LoggingAspect {
@@ -30,19 +31,8 @@ class LoggingAspect {
 
     @AfterThrowing(pointcut = "loggingPointcut()", throwing = "e")
     public void logAfterThrowing(JoinPoint joinPoint, Throwable e) {
-        /*
-        if (env.acceptsProfiles(Constants.SPRING_PROFILE_DEVELOPMENT)) {
-            log.error("Exception in {}.{}() with cause = {} and exception {}", joinPoint.getSignature().getDeclaringTypeName(),
-                    joinPoint.getSignature().getName(), e.getCause(), e);
-        } else {
-            log.error("Exception in {}.{}() with cause = {}", joinPoint.getSignature().getDeclaringTypeName(),
-                    joinPoint.getSignature().getName(), e.getCause());
-        }
-        * */
         log.error(
-                "Exception in {}.{}() with cause = {}",
-                joinPoint.getSignature().getDeclaringTypeName(),
-                joinPoint.getSignature().getName(), e.getCause()
+          """Exception in ${joinPoint.getSignature().getDeclaringTypeName()}.${joinPoint.getSignature().getName()}() with cause = ${e.getCause()}"""
         );
     }
 

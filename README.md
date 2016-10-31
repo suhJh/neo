@@ -4,8 +4,7 @@
 
 This simple project is for my personal study of modern web application.
 
-[React.js][] : for front-end UI.
-[Spring-boot][] : for restful server-side response.
+React.js : for front-end UI.
 
 You can check latest version of this project at [https://github.com/suhJh/neo](https://github.com/suhJh/neo)
 

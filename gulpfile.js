@@ -66,4 +66,5 @@ gulp.task('build', () => {
 gulp.task('watch', () => {
     gulp.watch(config.src.img + '/**/*.jpg').on('change', browserSync.reload);
     gulp.watch(config.src.html + '/**/*.html').on('change', browserSync.reload);
+    gulp.watch(`${config.src.js}/**/*.*`, ['build']);
 });
