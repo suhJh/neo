@@ -16,6 +16,7 @@ class LoggingAspectConfiguration {
     @Bean
     @Profile(DefaultProfileUtil.SPRING_PROFILE_DEVELOPMENT)
     public LoggingAspect loggingAspect() {
+		println '★☆★☆★☆★☆DEV MODE AOP LOGGING APPLIED★☆★☆★☆★☆★☆'
         return new LoggingAspect();
     }
 

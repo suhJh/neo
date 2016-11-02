@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean
 import org.springframework.core.env.Environment
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.thymeleaf.TemplateRepository;
+
 import sjh.spring.config.DefaultProfileUtil
 import sjh.spring.domain.User
 import sjh.spring.repository.UserRepository
@@ -40,7 +42,8 @@ class NeoApplication {
     static final Logger log = LoggerFactory.getLogger(NeoApplication.class);
 
     @Inject
-    Environment env;
+    Environment env
+	
 
     static main(args) {
 
@@ -61,6 +64,7 @@ class NeoApplication {
 
     @PostConstruct
     initApplication() {
+		
         log.info("프로퍼티모드 : ${Arrays.toString(env.getActiveProfiles())}")
         Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles())
         if (activeProfiles.contains(DefaultProfileUtil.SPRING_PROFILE_DEVELOPMENT) && activeProfiles.contains(DefaultProfileUtil.SPRING_PROFILE_PRODUCTION)) {
@@ -68,10 +72,12 @@ class NeoApplication {
         }
     }
 
+	
 
     @Bean
     CommandLineRunner init(UserRepository userRepository) {
         return {
+			
             PasswordEncoder p = new BCryptPasswordEncoder();
 
             userRepository.save(new User(name:'서종효', password: p.encode('이건암호화되어야'), email: 'pk1@naver.com'))

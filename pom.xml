@@ -6,10 +6,10 @@
 	<groupId>sjh.spring</groupId>
 	<artifactId>neo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>neo</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Spring loves React</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

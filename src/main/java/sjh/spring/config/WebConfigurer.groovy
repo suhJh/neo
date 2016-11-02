@@ -43,6 +43,7 @@ class WebConfigurer implements ServletContextInitializer, EmbeddedServletContain
 
         //  디폴트가 아닌 설정한 정적자원 주소로 맵핑함.
         setLocationForStaticAssets(container);
+		println '★☆★☆★☆★☆STATIC ASSETS SETUP★☆★☆★☆★☆★☆'
     }
 
     @Override
@@ -58,7 +59,7 @@ class WebConfigurer implements ServletContextInitializer, EmbeddedServletContain
         if (env.acceptsProfiles(DefaultProfileUtil.SPRING_PROFILE_DEVELOPMENT)) {
             initH2Console(servletContext)
         }
-        log.info("웹환경 설정 완료")
+		println '★☆★☆★☆★☆WEB ENV SETUP COMPLETED★☆★☆★☆★☆★☆'
     }
 
 

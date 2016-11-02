@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest
  * http://localhost:8080
  *
  */
-//@Controller
+@Controller
 class IndexController {
 
     final Logger log = LoggerFactory.getLogger(this.class);
@@ -23,7 +23,8 @@ class IndexController {
     @RequestMapping(["/", "/c8", "/nimi"])
     def index(HttpServletRequest req){
         log.info("${req.remoteAddr}에서 홈페이지에 접속하였습니다.")
-        return '/index'
+		
+        return 'index'
     }
 
 

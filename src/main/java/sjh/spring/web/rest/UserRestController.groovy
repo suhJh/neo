@@ -4,7 +4,9 @@ import javax.inject.Inject
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType
+import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -26,15 +28,14 @@ class UserRestController {
     @RequestMapping(
 		value="/api/users", 
 		method = RequestMethod.POST,
-		produces = MediaType.APPLICATION_JSON_VALUE
+		produces = [MediaType.APPLICATION_JSON_VALUE]
 	)
-    @Transactional
     def getUsers(@RequestBody User user, HttpServletRequest req) {
 		
+		println user
+		
 		try{
-			
 			def targetUser = userService.findOneBySeq(user.seq).get()
-			 
 			println targetUser
 			if(targetUser)  return targetUser
 			
@@ -42,7 +43,7 @@ class UserRestController {
 			println e
 		}
 
-        return new User(name: '없습니당')
+		return 'c8'
     }
 
 }
