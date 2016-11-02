@@ -41,6 +41,8 @@
     "redux-logger": "^2.7.0",
     "redux-thunk": "^2.1.0",
     "rx": "^4.1.0",
+    "sockjs-client": "^1.1.1",
+    "stomp-client": "^0.8.1",
     "superagent": "^2.3.0",
     "underscore": "^1.8.3"
   },
