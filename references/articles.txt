@@ -11,6 +11,9 @@ http://adrenal.tistory.com/20
 #spring websocket <--> sockjs
 http://netframework.tistory.com/entry/Spring-4x%EC%97%90%EC%84%9C%EC%9D%98-WebSocket-SockJS-STOMP
 
+#소켓 심화
+https://spring.io/blog/2015/10/13/react-js-and-spring-data-rest-part-4-events
+
 
 #카산드라를 이용한 킬러챗앱
 https://academy.datastax.com/resources/getting-started-killrchat-example-data-model-messaging
