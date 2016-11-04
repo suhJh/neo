@@ -1,0 +1,84 @@
+
+.header-gradient{
+  background: -webkit-linear-gradient(left, #6db33f 25%, #222 55%);
+  background: -o-linear-gradient(left, #6db33f 25%, #222 55%);
+  background: linear-gradient(to right, #6db33f 25%, #222 55%);
+}
+
+.header-span-image{
+  height:70px; margin-right: 6px; margin-top: -8px;
+}
+
+.f-white{
+  color: #f1f1f1;
+}
+
+/* http://www.cssarrowplease.com/ */
+
+.arrow_box_r {
+  margin-right: 20px;
+	position: relative;
+	background: #6db33f;
+	border: 4px solid #7ecf49;
+  border-radius: 20px;
+}
+.arrow_box_r:after, .arrow_box_r:before {
+	left: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box_r:after {
+	border-color: rgba(109, 179, 63, 0);
+	border-left-color: #6db33f;
+	border-width: 13px;
+	margin-top: -13px;
+}
+.arrow_box_r:before {
+	border-color: rgba(126, 207, 73, 0);
+	border-left-color: #7ecf49;
+	border-width: 19px;
+	margin-top: -19px;
+}
+
+
+
+.arrow_box_l {
+  margin-left: 20px;
+	position: relative;
+	background: #61dafb;
+	border: 4px solid #55bedb;
+  border-radius: 20px;
+}
+.arrow_box_l:after, .arrow_box_l:before {
+	right: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box_l:after {
+	border-color: rgba(97, 218, 251, 0);
+	border-right-color: #61dafb;
+	border-width: 13px;
+	margin-top: -13px;
+}
+.arrow_box_l:before {
+	border-color: rgba(85, 190, 219, 0);
+	border-right-color: #55bedb;
+	border-width: 19px;
+	margin-top: -19px;
+}
+
+.speech-bubble {
+  margin-top: 18px;
+}
