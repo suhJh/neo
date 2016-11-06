@@ -6,11 +6,14 @@ import sjh.spring.domain.Message
 import sjh.spring.domain.User
 
 /**
- * User
+ * Created by Suh on 2016-11-06.
  */
 @Repository
-interface UserRepository extends JpaRepository<User, Long> {
+interface MessageRepository extends JpaRepository<Message, Long> {
 
+    List<Message> findBySender(User user)
+
+    List<Message> findTop10ByTimestampBefore(Message message)
 
 
 }

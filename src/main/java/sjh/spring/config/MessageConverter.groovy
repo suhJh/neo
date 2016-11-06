@@ -20,8 +20,9 @@ class MessageConverter {
 		println '★☆★☆★☆★☆GSON MESSAGE CONVERTER INITIALIZED★☆★☆★☆★☆★☆'
 		
         Collection<HttpMessageConverter<?>> messageConverters = new ArrayList<>()
-        
         GsonHttpMessageConverter gsonHttpMessageConverter = new GsonHttpMessageConverter()
+
+
         messageConverters.add(gsonHttpMessageConverter)
         
         return new HttpMessageConverters(true, messageConverters)

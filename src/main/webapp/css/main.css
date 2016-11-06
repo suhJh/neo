@@ -1,4 +1,5 @@
 
+
 .header-gradient{
   background: -webkit-linear-gradient(left, #6db33f 25%, #222 55%);
   background: -o-linear-gradient(left, #6db33f 25%, #222 55%);
@@ -6,11 +7,15 @@
 }
 
 .header-span-image{
-  height:70px; margin-right: 6px; margin-top: -8px;
+  height:70px;
+  margin-right: 16px !important;
+  margin-left: 16px !important;
+  margin-top: -8px !important;
 }
 
+
 .f-white{
-  color: #f1f1f1;
+  color: #f1f1f1 !important;
 }
 
 /* http://www.cssarrowplease.com/ */

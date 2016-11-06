@@ -3,10 +3,12 @@ package sjh.spring.web.socket
 import org.springframework.messaging.handler.annotation.MessageMapping
 import org.springframework.messaging.handler.annotation.SendTo
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody
+import sjh.spring.domain.Message
+import sjh.spring.repository.MessageRepository
 
-import sjh.spring.web.socket.dto.Greeting
-import sjh.spring.web.socket.dto.HelloMessage
+import javax.inject.Inject
+
 
 /**
  * Created by Suh on 2016-11-02.
@@ -14,12 +16,25 @@ import sjh.spring.web.socket.dto.HelloMessage
 @Controller
 class SocketController {
 
-    @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
-    Greeting greeting(@RequestBody HelloMessage message) throws Exception {
+    @Inject
+    MessageRepository messageRepository
+
+
+    @MessageMapping("/insertMessage")   //소켓으로 insert하는 경우..
+    @SendTo("/subscribe/messages")  //-->front에서 맵핑을 해야됨
+    def hihi(@RequestBody Message message) throws Exception {
         Thread.sleep(1000); // simulated delay
-		println message.name
-        return new Greeting("Hello, " + message.getName() + "!");
+        return message
+    }
+
+    @MessageMapping("/welcome")
+    @SendTo("/subscribe/messages")
+    def getInitialList(@RequestBody Message message){
+        if(!message || !message.timestamp){
+            message = new Message()
+        }
+
+        return messageRepository.findTop10ByTimestampBefore(message)
     }
 
 }

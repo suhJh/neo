@@ -1,3 +1,4 @@
 import App from './App';
+import ChatContainer from './ChatContainer';
 
-export { App };
+export { App, ChatContainer };

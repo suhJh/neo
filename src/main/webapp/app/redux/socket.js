@@ -18,11 +18,9 @@ export function connect() {
   stompClient.connect({}, (frame) => {
     setConnected(true);
     console.log(`Connected: ${frame}`);
-    stompClient.subscribe('/subscribe/messages', (messages) => {
-      showGreeting(JSON.parse(messages.body).content);
+    stompClient.subscribe('/topic/greetings', (greeting) => {
+      showGreeting(JSON.parse(greeting.body).content);
     });
-
-    stompClient.send('/crud/welcome', {}, JSON.stringify({ message: 'c8c8', sender: { seq: 1 }, timestamp: Date.now() }));
   });
 }
 
@@ -35,5 +33,5 @@ export function disconnect() {
 }
 
 export function sendName(name) {
-  stompClient.send('/crud/insertMessage', {}, JSON.stringify({ name }));
+  stompClient.send('/app/hello', {}, JSON.stringify({ name }));
 }

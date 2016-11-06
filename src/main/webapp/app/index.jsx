@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { PageHeader } from './static-components';
 import { App } from './components';
+
+class Contents extends Component {
+  render() {
+    return (
+      <div>
+        <PageHeader />
+        <App />
+      </div>
+    );
+  }
+}
+
 
 /*
 import request from 'superagent';
@@ -13,4 +26,5 @@ request
   });
 */
 
-ReactDOM.render(<App title={'소켓테스트'} />, document.getElementById('contents'));
+//ReactDOM.render(<App title={'소켓테스트'} />, document.getElementById('contents'));
+ReactDOM.render(<Contents />, document.getElementById('contents'));

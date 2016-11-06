@@ -11,12 +11,13 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry
 @EnableWebSocketMessageBroker
 class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
-	private static final MESSAGE_PREFIX = '/topic'; 
+	private static final MESSAGE_PREFIX = '/subscribe';
 	
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
         config.enableSimpleBroker(MESSAGE_PREFIX);
-        config.setApplicationDestinationPrefixes("/app");
+
+        config.setApplicationDestinationPrefixes("/crud");
     }
 
     @Override

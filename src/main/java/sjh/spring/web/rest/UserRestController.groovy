@@ -1,20 +1,19 @@
 package sjh.spring.web.rest
 
-import javax.inject.Inject
-import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Transactional
-
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
-import org.springframework.http.converter.json.GsonHttpMessageConverter;
+import org.springframework.messaging.handler.annotation.SendTo
+import org.springframework.messaging.simp.SimpMessagingTemplate
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
-
+import sjh.spring.domain.Message
 import sjh.spring.domain.User
+import sjh.spring.repository.MessageRepository
 import sjh.spring.service.UserService
+
+import javax.inject.Inject
+import javax.servlet.http.HttpServletRequest
 
 /**
  * Created by Suh on 2016-10-30.
@@ -24,6 +23,14 @@ class UserRestController {
 
     @Inject
     UserService userService
+
+	@Inject
+	MessageRepository messageRepository
+
+	@Inject
+	private final SimpMessagingTemplate websocket;
+
+
 
     @RequestMapping(
 		value="/api/users", 

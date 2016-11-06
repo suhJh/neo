@@ -1,13 +1,17 @@
 package sjh.spring.domain
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.google.common.collect.Lists
 import org.hibernate.validator.constraints.Email
 
+import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.OneToMany
 import javax.persistence.Table
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
@@ -23,99 +27,81 @@ class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="SEQ")
     private Long seq
 
 	@JsonIgnore
     @Email
     @Size(max = 100)
-    @Column(name="email", length = 100, unique = true)
+    @Column(name="EMAIL", length = 100, unique = true)
     private String email
 
 
     @JsonIgnore
     @NotNull
     @Size(min = 60, max = 60)
-    @Column(name = "password",length = 60)
+    @Column(name = "PWD",length = 60)
     private String password
 
 	@JsonIgnore
     @Size(max = 50)
-    @Column(name = "name", length = 50)
+    @Column(name = "NAME", length = 50)
     private String name
 
 
-	
-	
-    public Long getSeq() {
-		return seq;
+
+	static long getSerialVersionUID() {
+		return serialVersionUID
 	}
 
-
-
-
-	public void setSeq(Long seq) {
-		this.seq = seq;
+	Long getSeq() {
+		return seq
 	}
 
-
-
-
-	public String getEmail() {
-		return email;
+	void setSeq(Long seq) {
+		this.seq = seq
 	}
 
-
-
-
-	public void setEmail(String email) {
-		this.email = email;
+	String getEmail() {
+		return email
 	}
 
-
-
-
-	public String getPassword() {
-		return password;
+	void setEmail(String email) {
+		this.email = email
 	}
 
-
-
-
-	public void setPassword(String password) {
-		this.password = password;
+	String getPassword() {
+		return password
 	}
 
-
-
-
-	public String getName() {
-		return name;
+	void setPassword(String password) {
+		this.password = password
 	}
 
-
-
-
-	public void setName(String name) {
-		this.name = name;
+	String getName() {
+		return name
 	}
 
-
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	void setName(String name) {
+		this.name = name
 	}
 
+	List<Message> getMessages() {
+		return messages
+	}
 
+	void setMessages(List<Message> messages) {
+		this.messages = messages
+	}
 
 
 	@Override
-    public String toString() {
-        return "User{" +
-                "seq=" + seq +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
+	public String toString() {
+		return "User{" +
+				"seq=" + seq +
+				", email='" + email + '\'' +
+				", password='" + password + '\'' +
+				", name='" + name + '\'' +
+				'}';
+	}
 }

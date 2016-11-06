@@ -12,11 +12,14 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.thymeleaf.TemplateRepository;
 
 import sjh.spring.config.DefaultProfileUtil
+import sjh.spring.domain.Message
 import sjh.spring.domain.User
+import sjh.spring.repository.MessageRepository
 import sjh.spring.repository.UserRepository
 
 import javax.annotation.PostConstruct
 import javax.inject.Inject
+import javax.transaction.Transactional
 
 /**
  * 최초 시작점
@@ -74,8 +77,9 @@ class NeoApplication {
 
 	
 
+    @Transactional
     @Bean
-    CommandLineRunner init(UserRepository userRepository) {
+    CommandLineRunner init(UserRepository userRepository, MessageRepository msgRepository) {
         return {
 			
             PasswordEncoder p = new BCryptPasswordEncoder();
@@ -88,6 +92,24 @@ class NeoApplication {
             userRepository.findAll().each {
                 println it
             }
+
+            msgRepository.save(new Message(sender: new User(seq: 1), message: '이건 첫번째 메시지'))
+            msgRepository.save(new Message(sender: new User(seq: 2), message: '이건 두번째 메시지'))
+            msgRepository.save(new Message(sender: new User(seq: 3), message: '이건 세번째 메시지'))
+            msgRepository.save(new Message(sender: new User(seq: 1), message: '이건 네번째 메시지'))
+            msgRepository.save(new Message(sender: new User(seq: 1), message: '이건 다섯번째 메시지'))
+
+            msgRepository.findAll().each {
+                println it
+            }
+
+
+            msgRepository.findBySender(new User(seq: 1)).each {
+                println it
+            }
+
+
+
         }
     }
 

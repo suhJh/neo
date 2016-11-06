@@ -10,3 +10,7 @@ http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/
 
 #react로 만드는 아주 단순한 앱. 파트 3부터 볼 것
 https://spring.io/guides/tutorials/react-and-spring-data-rest/
+
+#jpa 기초
+http://www.slideshare.net/zipkyh/ksug2015-jpa2-jpa
+http://arahansa.github.io/docs_spring/jpa.html
