@@ -1,7 +1,5 @@
 package sjh.spring.domain
 
-import com.fasterxml.jackson.annotation.JsonBackReference
-
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -14,6 +12,9 @@ import javax.persistence.Table
 import javax.persistence.Temporal
 import javax.persistence.TemporalType
 
+import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Created by Suh on 2016-11-06.
  */
@@ -21,6 +22,7 @@ import javax.persistence.TemporalType
 @Table(name="TB_MESSAGE")
 class Message implements Serializable{
 
+	@JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="SEQ")
@@ -34,14 +36,15 @@ class Message implements Serializable{
     @Column(name="MESSAGE")
     private String message
 
-    @Temporal(TemporalType.TIMESTAMP)
+	@JsonIgnore
+	@Temporal(TemporalType.TIMESTAMP)
     @Column(name="TIMESTAMP")
     private Date timestamp
 
 
     @PrePersist //sysdate or getdate와 같은 용도
     protected void onCreate() {
-        if (timestamp == null)  timestamp = new Date()
+        if (timestamp == null)  timestamp = new Date() 
     }
 
 
@@ -69,21 +72,20 @@ class Message implements Serializable{
         this.message = message
     }
 
-    Date getTimestamp() {
-        return timestamp
-    }
 
-    void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp
-    }
+	public def getTimestamp() {
+		return timestamp;
+	}
 
-    @Override
-    public String toString() {
-        return "Message{" +
-                "seq=" + seq +
-                ", sender=" + sender +
-                ", message='" + message + '\'' +
-                ", timestamp=" + timestamp +
-                '}';
-    }
+	public void setTimestamp(Long timestamp) {
+		this.timestamp = new Date(timestamp)
+	}
+
+
+	@Override
+	public String toString() {
+		return "Message [seq=" + seq + ", sender=" + sender + ", message=" + message + ", timestamp=" + timestamp + "]";
+	}
+
+    
 }

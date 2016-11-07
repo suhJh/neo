@@ -28,7 +28,10 @@ gulp.task('default', [
 
 gulp.task('browser-sync', () => {
   browserSync.init(null, {
-    proxy: 'http://localhost:8080',
+    proxy: {
+      target: 'http://localhost:8080',
+      ws: true,
+    },
     files: [`${config.src.js}/*.*`],
     port: 3000,
     open: 'external',
