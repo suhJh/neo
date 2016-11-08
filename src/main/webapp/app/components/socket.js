@@ -1,6 +1,7 @@
 import Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
-
+import { now } from '../util';
+import request from 'superagent';
 
 let stompClient = null;
 
@@ -22,7 +23,9 @@ export function connect() {
       showGreeting(JSON.parse(messages.body).content);
     });
 
-    stompClient.send('/crud/welcome', {}, JSON.stringify({ message: 'c8c8', sender: { seq: 1 }, timestamp: Date.now() }));
+    /* 프론트랑 백이랑 타임 포맷 맞춰야지 나온다. */
+    const initialData = JSON.stringify({ timestamp: now() });
+    stompClient.send('/crud/welcome', {}, initialData);
   });
 }
 
@@ -34,6 +37,19 @@ export function disconnect() {
   console.log('Disconnected');
 }
 
-export function sendName(name) {
-  stompClient.send('/crud/insertMessage', {}, JSON.stringify({ name }));
+export function send(message) {
+  //  stompClient.send('/crud/insertMessage', {}, JSON.stringify({ name }));
+  request
+    .post('/api/message/write')
+    .type('json')
+    .send({
+      sender: {
+        seq: 1,
+      },
+      timestamp: now(),
+      message,
+    })
+    .end((err, data) => {
+      console.log(data.body);
+    });
 }

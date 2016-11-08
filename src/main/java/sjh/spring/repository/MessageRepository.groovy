@@ -13,7 +13,7 @@ interface MessageRepository extends JpaRepository<Message, Long> {
 
     List<Message> findBySender(User user)
 
-    List<Message> findTop10ByTimestampBefore(Message message)
+    List<Message> findTop10ByTimestampBefore(Date timestamp)
 
 
 }

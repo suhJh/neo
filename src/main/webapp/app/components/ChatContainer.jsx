@@ -9,9 +9,11 @@ export default class ChatContainer extends Component {
         </div>
         <div className="row">
           <div className="col-lg-8">
+            //TODO: 말풍선들 들어갈 자리
           </div>
         </div>
         <div className="clearfix col-lg-12">
+          // TODO: 참가자명단
         </div>
       </div>
     );

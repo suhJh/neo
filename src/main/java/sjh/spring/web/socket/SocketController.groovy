@@ -34,7 +34,8 @@ class SocketController {
             message = new Message()
         }
 
-        return messageRepository.findTop10ByTimestampBefore(message)
+		println "${message.timestamp}이전 시간의 데이터 10개를 빼오겠습니다."
+        return messageRepository.findTop10ByTimestampBefore(message.timestamp)
     }
 
 }

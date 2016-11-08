@@ -5,7 +5,7 @@ import {
   setConnected,
   connect,
   disconnect,
-  sendName,
+  send,
 } from './socket';
 
 export default class App extends Component {
@@ -16,7 +16,7 @@ export default class App extends Component {
     return (
       <div>
         <ChatContainer />
-        <ChatInput send={sendName} />
+        <ChatInput send={send} />
       </div>
     );
   }
