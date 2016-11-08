@@ -4,16 +4,16 @@ import org.springframework.messaging.handler.annotation.MessageMapping
 import org.springframework.messaging.handler.annotation.SendTo
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RestController
 import sjh.spring.domain.Message
 import sjh.spring.repository.MessageRepository
 
 import javax.inject.Inject
 
-
 /**
  * Created by Suh on 2016-11-02.
  */
-@Controller
+@RestController
 class SocketController {
 
     @Inject
@@ -30,12 +30,13 @@ class SocketController {
     @MessageMapping("/welcome")
     @SendTo("/subscribe/messages")
     def getInitialList(@RequestBody Message message){
+        println message
         if(!message || !message.timestamp){
             message = new Message()
         }
 
 		println "${message.timestamp}이전 시간의 데이터 10개를 빼오겠습니다."
-        return messageRepository.findTop10ByTimestampBefore(message.timestamp)
+        return messageRepository.findTop10ByTimestampBeforeOrderByTimestampDesc(message.timestamp)
     }
 
 }

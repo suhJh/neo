@@ -31,7 +31,7 @@ class MessageRestController {
 
     @RequestMapping(value="/api/message/write", method=RequestMethod.POST,  produces = [MediaType.APPLICATION_JSON_VALUE])
     def writeMessage(@RequestBody Message message){
-        println message
+        println "****엥? : ${message}"
         messageRepository.save(message)
         websocket.convertAndSend('/subscribe/messages', message)
         def result = [success: message]

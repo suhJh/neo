@@ -50,37 +50,25 @@ class Message implements Serializable{
         if (timestamp == null)  timestamp = new Date()
     }
 
-
-
 	public Long getSeq() {
 		return seq;
 	}
-
-
 
 	public void setSeq(Long seq) {
 		this.seq = seq;
 	}
 
-
-
 	public User getSender() {
 		return sender;
 	}
-
-
 
 	public void setSender(User sender) {
 		this.sender = sender;
 	}
 
-
-
 	public String getMessage() {
 		return message;
 	}
-
-
 
 	public void setMessage(String message) {
 		this.message = message;

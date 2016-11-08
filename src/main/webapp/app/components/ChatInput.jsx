@@ -12,6 +12,9 @@ export default class ChatInput extends Component {
     }
     const { send } = this.props;
     const text = this.inputText.value.trim();
+    if (text === '') {
+      return;
+    }
     send(text);
     this.inputText.value = '';
   }

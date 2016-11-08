@@ -21,9 +21,8 @@ class MessageConverter {
         Collection<HttpMessageConverter<?>> messageConverters = new ArrayList<>()
         
 		Gson gson = new GsonBuilder()
-						.excludeFieldsWithoutExposeAnnotation()
 						.setDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
-						.create();
+						.create()
 		GsonHttpMessageConverter gsonHttpMessageConverter = new GsonHttpMessageConverter()
 		
 		gsonHttpMessageConverter.setGson(gson)

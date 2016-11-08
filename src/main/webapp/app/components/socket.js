@@ -20,6 +20,7 @@ export function connect() {
     setConnected(true);
     console.log(`Connected: ${frame}`);
     stompClient.subscribe('/subscribe/messages', (messages) => {
+      console.log('----------subscribe-------------');
       showGreeting(JSON.parse(messages.body).content);
     });
 
@@ -39,6 +40,7 @@ export function disconnect() {
 
 export function send(message) {
   //  stompClient.send('/crud/insertMessage', {}, JSON.stringify({ name }));
+
   request
     .post('/api/message/write')
     .type('json')
