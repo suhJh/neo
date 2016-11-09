@@ -43,8 +43,6 @@ class Message implements Serializable{
 	@JsonIgnore
 	private Date timestamp
 	
-
-
     @PrePersist //sysdate or getdate와 같은 용도
     protected void onCreate() {
         if (timestamp == null)  timestamp = new Date()
@@ -87,7 +85,6 @@ class Message implements Serializable{
 	public String toString() {
 		return "Message [seq=" + seq + ", sender=" + sender + ", message=" + message + ", timestamp=" + timestamp + "]";
 	}
-
 	
     
 }
