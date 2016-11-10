@@ -48,7 +48,7 @@ class SocketController {
 		
         //return messageRepository.findTop10ByTimestampBeforeOrderByTimestampDesc(message.timestamp, new PageRequest(1, 5))
 					
-		return messageRepository.findAll(new PageRequest(1, 5, new Sort(new Order("message", false), new Order("seq", true))))
+		return messageRepository.findByTimestampBefore(new Date(), new PageRequest(0, 10, new Sort(Direction.DESC, "timestamp")))
     }
 
 	@RequestMapping(value="/test")

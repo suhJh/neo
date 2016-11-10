@@ -1,3 +1,10 @@
 
 #jpa query method
 https://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-part-seven-pagination/
+
+#jpa reference 한글
+http://www.querydsl.com/static/querydsl/3.6.0/reference/ko-KR/html_single/
+
+#jpa 기초
+http://www.slideshare.net/zipkyh/ksug2015-jpa2-jpa
+http://arahansa.github.io/docs_spring/jpa.html

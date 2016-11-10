@@ -15,7 +15,7 @@ interface MessageRepository extends JpaRepository<Message, Long> {
 
     List<Message> findBySender(User user)
 
-    List<Message> findTop10ByTimestampBeforeOrderByTimestampDesc(Date timestamp, Pageable pageable)
+    List<Message> findByTimestampBefore(Date timestamp, Pageable pageable)
 
 
 	
