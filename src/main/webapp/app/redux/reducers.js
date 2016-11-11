@@ -1,15 +1,11 @@
+import { combineReducers } from 'redux';
 import request from 'superagent';
 import Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
+import { newChat, prevList } from './actions';
 import { now } from '../util';
 
-
 let stompClient = null;
-
-
-function showGreeting(message) {
-  console.log(message);
-}
 
 export function connect() {
   const socket = new SockJS('/payroll');
@@ -26,26 +22,21 @@ export function connect() {
   });
 }
 
-export function disconnect() {
-  if (stompClient !== null) {
-    stompClient.disconnect();
+
+const chats = (state = [], action) => {
+  switch (action.type) {
+    case newChat:
+      return [...state, action.chat];
+    case prevList:
+      return [...action.chats, ...state];
+    default:
+      return state;
   }
-}
+};
 
-export function send(message) {
-  //  stompClient.send('/crud/insertMessage', {}, JSON.stringify({ name }));
+// state
+const reducers = combineReducers({
+  chats,
+});
 
-  request
-    .post('/api/message/write')
-    .type('json')
-    .send({
-      sender: {
-        seq: 1,
-      },
-      timestamp: now(),
-      message,
-    })
-    .end((err, data) => {
-      console.log(data.body);
-    });
-}
+export default reducers;
