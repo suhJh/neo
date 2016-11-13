@@ -1,33 +1,11 @@
 import { combineReducers } from 'redux';
-import request from 'superagent';
-import Stomp from 'stompjs';
-import SockJS from 'sockjs-client';
-import { newChat, prevList } from './actions';
-import { now } from '../util';
-
-let stompClient = null;
-
-export function connect() {
-  const socket = new SockJS('/payroll');
-  stompClient = Stomp.over(socket);
-  stompClient.connect({}, (frame) => {
-    console.log(`Connected: ${frame}`);
-    stompClient.subscribe('/subscribe/messages', (messages) => {
-      showGreeting(JSON.parse(messages.body).content);
-    });
-
-    /* 프론트랑 백이랑 타임 포맷 맞춰야지 나온다. */
-    const initialData = JSON.stringify({ timestamp: now() });
-    stompClient.send('/crud/welcome', {}, initialData);
-  });
-}
-
+import { chatActions } from './actions';
 
 const chats = (state = [], action) => {
   switch (action.type) {
-    case newChat:
+    case chatActions.getNewSingleChat:
       return [...state, action.chat];
-    case prevList:
+    case chatActions.getPreviousChatsByTimestamp:
       return [...action.chats, ...state];
     default:
       return state;

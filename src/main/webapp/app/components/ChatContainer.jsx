@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import SpeechBubble from './SpeechBubble';
 
 export default class ChatContainer extends Component {
   render() {
@@ -9,13 +10,22 @@ export default class ChatContainer extends Component {
         </div>
         <div className="row">
           <div className="col-lg-8">
-            //TODO: 말풍선들 들어갈 자리
+            {this.props.chats.map(chat =>
+              <SpeechBubble
+                {...chat}
+                key={chat.seq}
+              />
+            )}
           </div>
         </div>
         <div className="clearfix col-lg-12">
-          // TODO: 참가자명단
+          /*// TODO: 참가자명단*/
         </div>
       </div>
     );
   }
 }
+
+ChatContainer.propTypes = {
+  chats: PropTypes.arrayOf(React.PropTypes.object),
+};

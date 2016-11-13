@@ -10,12 +10,12 @@ export default class ChatInput extends Component {
     if (e && e.key !== 'Enter') {
       return;
     }
-    const { send } = this.props;
-    const text = this.inputText.value.trim();
-    if (text === '') {
+    const message = this.inputText.value.trim();
+    if (message === '') {
       return;
     }
-    send(text);
+    const { send } = this.props;
+    send(message);
     this.inputText.value = '';
   }
   render() {

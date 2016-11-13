@@ -1,7 +1,17 @@
 package sjh.spring.web.socket
 
-import javax.inject.Inject
+import org.springframework.context.annotation.Bean
+import org.springframework.messaging.converter.ByteArrayMessageConverter
+import org.springframework.messaging.converter.CompositeMessageConverter
+import org.springframework.messaging.converter.DefaultContentTypeResolver
+import org.springframework.messaging.converter.MappingJackson2MessageConverter
+import org.springframework.messaging.converter.MessageConverter
+import org.springframework.messaging.converter.StringMessageConverter
+import org.springframework.messaging.simp.config.AbstractMessageBrokerConfiguration
+import org.springframework.util.MimeTypeUtils
 
+import javax.inject.Inject
+import org.springframework.util.ClassUtils
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.data.domain.Sort.Direction;
@@ -29,34 +39,12 @@ class SocketController {
 
     @MessageMapping("/insertMessage")   //소켓으로 insert하는 경우..
     @SendTo("/subscribe/messages")  //-->front에서 맵핑을 해야됨
-    def hihi(@RequestBody Message message) throws Exception {
+    Message hihi(@RequestBody Message message) throws Exception {
         Thread.sleep(1000); // simulated delay
+        println message
         return message
     }
 
-    @MessageMapping("/welcome")
-    @SendTo("/subscribe/messages")
-    def getInitialList(@RequestBody Message message){
-        println message
-        if(!message && !message.timestamp){
-            message = new Message()
-        }
 
-		println "${message.timestamp} 이전 시간의 데이터 10개를 빼오겠습니다."
-		
-		//PageRequet pageRequest = new PageRequest(0, 10, new Sort(Direction.DESC, " username")); //현재페이지, 조회할 페이지수, 정렬정보
-		
-        //return messageRepository.findTop10ByTimestampBeforeOrderByTimestampDesc(message.timestamp, new PageRequest(1, 5))
-					
-		return messageRepository.findByTimestampBefore(new Date(), new PageRequest(0, 10, new Sort(Direction.DESC, "timestamp")))
-    }
-
-	@RequestMapping(value="/test")
-	def test(){
-		
-		def somthing = 'ddd'; 
-		
-		return somthing;
-	}
 	
 }

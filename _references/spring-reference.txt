@@ -14,3 +14,6 @@ https://spring.io/guides/tutorials/react-and-spring-data-rest/
 #jpa 기초
 http://www.slideshare.net/zipkyh/ksug2015-jpa2-jpa
 http://arahansa.github.io/docs_spring/jpa.html
+
+#어떤 양키의 소켓채팅
+https://github.com/bijukunjummen/spring-websocket-chat-sample/blob/master/src/main/java/bk/chat/web/ChatController.java

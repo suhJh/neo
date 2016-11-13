@@ -1,5 +1,6 @@
 package sjh.spring.domain
 
+import com.fasterxml.jackson.annotation.JsonManagedReference
 
 import javax.persistence.Column
 import javax.persistence.Entity

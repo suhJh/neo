@@ -1,33 +1,61 @@
-import React, { Component } from 'react';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import reducers from '../redux/reducers';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import request from 'superagent';
 import ChatContainer from './ChatContainer';
 import ChatInput from './ChatInput';
+import { asyncGetList } from '../redux/actions';
+import socketIntialize from '../redux/socket';
+import { now } from '../util';
 
-const store = createStore(reducers);
-
-const next = store.dispatch;
-
-store.dispatch = function dispatchAndLog(action) {
-  console.log('dispatching', action);
-  const result = next(action);
-  console.log('next state', store.getState());
-  return result;
-};
-
-export default class App extends Component {
+class App extends Component {
   componentDidMount() {
-    connect();
+    const { dispatch } = this.props;
+    socketIntialize(dispatch);
+    asyncGetList(dispatch, { timestamp: now() });
   }
+  getList(chat) {
+    const { dispatch } = this.props;
+    asyncGetList(dispatch, chat);
+  }
+  send(message) {
+    request
+        .post('/api/message/write')
+        .type('json')
+        .send({
+          sender: {
+            seq: 1,
+          },
+          timestamp: now(),
+          message,
+        })
+        .end((err, data) => {
+          console.log(data.body);
+        });
+  }
+
   render() {
+    const { chats } = this.props;
     return (
       <div>
-        <Provider store={store}>
-          <ChatContainer />
-        </Provider>
-        <ChatInput send={send} />
+        <ChatContainer getList={this.getList} chats={chats} />
+        <ChatInput send={this.send} />
       </div>
     );
   }
 }
+
+App.propTypes = {
+  chats: PropTypes.arrayOf(React.PropTypes.object),
+  dispatch: PropTypes.func.isRequired,
+};
+
+
+function mapStateToProps(state) {
+  const { chats } = state;
+  return {
+    chats,
+  };
+}
+
+
+export default connect(mapStateToProps)(App);
