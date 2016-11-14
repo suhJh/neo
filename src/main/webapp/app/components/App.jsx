@@ -20,7 +20,7 @@ class App extends Component {
   send(message) {
     request
         .post('/api/message/write')
-        .type('json')
+        .type('application/json')
         .send({
           sender: {
             seq: 1,

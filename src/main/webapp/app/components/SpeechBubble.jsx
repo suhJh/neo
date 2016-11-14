@@ -6,7 +6,7 @@ export default class SpeechBubble extends Component {
     const { message, sender, timestamp } = this.props;
 
     let mineOrNot = 'col-lg-7 col-lg-push-4 arrow_box_r col-md-8 col-lg-push-3 col-sm-8 col-sm-push-3 col-xs-8 col-xs-push-3';
-    if (sender.seq !== 1) {
+    if (!sender || sender.seq !== 1) {
       mineOrNot = 'col-lg-7 arrow_box_l col-md-8 col-sm-8 col-xs-8';
     }
     return (

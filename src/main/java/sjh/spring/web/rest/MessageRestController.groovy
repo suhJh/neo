@@ -50,7 +50,7 @@ class MessageRestController {
         //PageRequet pageRequest = new PageRequest(0, 10, new Sort(Direction.DESC, " username")); //현재페이지, 조회할 페이지수, 정렬정보
         //return messageRepository.findTop10ByTimestampBeforeOrderByTimestampDesc(message.timestamp, new PageRequest(1, 5))
 
-        return messageRepository.findByTimestampBefore(new Date(), new PageRequest(0, 10, new Sort(Sort.Direction.DESC, "timestamp")))
+        return messageRepository.findByTimestampBefore(new Date(), new PageRequest(0, 10, new Sort(Sort.Direction.ASC, "timestamp")))
     }
 
 
@@ -67,9 +67,6 @@ class MessageRestController {
         websocket.convertAndSend('/subscribe/messages', message)
         //websocket.convertAndSend('/subscribe/messages', message)
     }
-
-
-
 
 
 }
