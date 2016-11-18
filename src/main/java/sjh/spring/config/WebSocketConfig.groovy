@@ -12,7 +12,7 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry
 
 @Configuration
 @EnableWebSocketMessageBroker
-class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
+class WebSocketConfig extends WebSocketMessageBrokerConfigurationSupport {
 
 
 	private static final MESSAGE_PREFIX = '/subscribe';
@@ -31,19 +31,13 @@ class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
     }
 
 
-    @Override
+   /* @Override
     public boolean configureMessageConverters(List<MessageConverter> messageConverters) {
 
-        println 'testtesttestteststset'
-        println 'testtesttestteststset'
-        println 'testtesttestteststset'
-        println 'testtesttestteststset'
-        println 'testtesttestteststset'
-        println 'testtesttestteststset'
-        println 'testtesttestteststset'
-        println 'testtesttestteststset'
-        println 'testtesttestteststset'
-
+		
+		(0..10).each{
+			println "${it} testtesttestteststset ${messageConverters.size()}"
+		}
 
         DefaultContentTypeResolver resolver = new DefaultContentTypeResolver();
         resolver.setDefaultMimeType(MimeTypeUtils.APPLICATION_JSON);
@@ -60,6 +54,6 @@ class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
         messageConverters.add(converter);
         return true;
     }
-
+*/
 
 }
