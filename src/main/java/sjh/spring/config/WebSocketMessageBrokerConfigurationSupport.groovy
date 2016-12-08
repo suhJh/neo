@@ -35,6 +35,7 @@ import org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessage
  * @author Artem Bilan
  * @since 4.0
  */
+//@Configuration
 public abstract class WebSocketMessageBrokerConfigurationSupport extends AbstractMessageBrokerConfiguration {
 
 	private WebSocketTransportRegistration transportRegistration;
