@@ -1,0 +1,56 @@
+
+
+
+부서
+
+채널정보 홈페이지파트
+  주요업무: 홈페이지 운영
+  업무영역: 펀드/신탁, 마케팅페이지
+  내부프로젝트참여: 비대면계좌개설
+
+프레임워크
+  생명홈페이지: 서블릿/jsp
+  펀드/신탁: 스트럿츠 2.0
+  온라인보험: 스프링 3.2
+
+업무시 사용언어
+  JAVA 1.6 / jsp / javascript / html5 / css
+
+사용툴
+  eclipse 4.6.1 / orange 5.0 / atom / acroedit/ editplus / ultraedit
+
+차트
+  chartFX / 렉스퍼트
+
+DATABASE
+  ORACLE / MSSQL
+
+WAS
+  운영 웹스피어 / 개발계 웹스피어 / 로컬톰캣
+
+WEB
+  APACHE
+
+서버OS
+  레드헷
+
+형상관리
+  (회사차원) 오로라 형상관리 시스템
+  (팀내부) SVN
+  (개인) github 주소 : https://github.com/suhJh
+
+자바스크립트 보유기술
+  ecma6 사용가능
+  ReactJS
+  Angular1
+  REDUX
+  걸프로 빌드 자동화 스크립트 작성가능
+
+
+자바관련 보유기술
+  소켓프로그래밍
+  jstl 사용가능
+  커스텀태그 작성가능
+  사용가능 라이브러리
+    ReactRX / Google Gooava / apache-lang, io
+  메이븐 빌드 스크립트 작성가능
