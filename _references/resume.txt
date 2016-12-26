@@ -1,0 +1,43 @@
+
+---- skill inventory ----
+
+
+1. 업무명
+2. 참여기간
+3. 고객사
+4. 근무회사
+5. 역할
+6. 기종
+7. OS
+8. 언어
+9. DBMS
+10. tool
+11. 기타
+
+개인프로젝트
+https://github.com/suhJh
+
+
+2013
+관공서 3개
+-한국콘텐츠진흥원
+-산림청
+
+2014
+3
+
+2015
+3
+
+2016
+1. 업무명: 홈페이지(사이버창구) -펀드/신탁
+2. 참여기간: 2016.01 ~ 2016.12
+3. 고객사: 미래에셋생명
+4. 근무회사: 스마트정보기술
+5. 역할: SM
+6. 기종: HP
+7. OS: RED HAT
+8. 언어: JAVA / JAVASCRIPT
+9. DBMS: ORACLE / MSSQL
+10. tool: ORANGE / ECLIPSE / ATOM
+11. 기타: SPRING / STRUTS / COMMONJS
